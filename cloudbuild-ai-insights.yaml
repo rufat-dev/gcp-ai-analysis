@@ -10,7 +10,7 @@ steps:
     args:
       - build
       - -f
-      - Dockerfile.ai-insights
+      - Dockerfile
       - -t
       - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_IMAGE_NAME}:$SHORT_SHA
       - .
