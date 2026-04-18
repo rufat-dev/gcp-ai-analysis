@@ -49,3 +49,4 @@
 /Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/obj/Release/net8.0/SoilAiInsightsWorker.pdb
 /Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/obj/Release/net8.0/SoilAiInsightsWorker.genruntimeconfig.cache
 /Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/obj/Release/net8.0/ref/SoilAiInsightsWorker.dll
+/Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/obj/Release/net8.0/SoilAiInsightsWorker.sourcelink.json

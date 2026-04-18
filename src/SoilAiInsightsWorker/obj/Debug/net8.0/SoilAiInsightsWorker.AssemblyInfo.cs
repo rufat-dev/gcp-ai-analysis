@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SoilAiInsightsWorker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab47ec617d08bc87d130b4b09ef71e5b5fa813d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("SoilAiInsightsWorker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SoilAiInsightsWorker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

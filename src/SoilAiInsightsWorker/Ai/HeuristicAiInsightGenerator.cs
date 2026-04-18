@@ -67,6 +67,7 @@ public sealed class HeuristicAiInsightGenerator : IAiInsightGenerator
             facts.Add($"Anomaly rows (24h window): {anomalies}");
         if (oor > 0)
             facts.Add($"Active out-of-range contexts: {oor}");
+        AppendNpkThresholdFacts(root, facts);
 
         var payload = new RecommendationAiPayload
         {
@@ -183,6 +184,23 @@ public sealed class HeuristicAiInsightGenerator : IAiInsightGenerator
         if (risk >= 60)
             return "Prioritize a hands-on check today: soil feel, container drainage, and any recent weather swings.";
         return "Keep your usual monitoring cadence; no urgent action is indicated from the supplied signals.";
+    }
+
+    private static void AppendNpkThresholdFacts(JsonElement root, List<string> facts)
+    {
+        foreach (var (letter, key) in new[] { ("N", "npk_n"), ("P", "npk_p"), ("K", "npk_k") })
+        {
+            var cur = TryGetDouble(root, "current", key);
+            if (cur is null)
+                continue;
+            var min = TryGetDouble(root, "plant_thresholds", key, "min");
+            var max = TryGetDouble(root, "plant_thresholds", key, "max");
+            var v = cur.Value;
+            if (min is not null && v < min.Value)
+                facts.Add($"Soil NPK-{letter} reading {v} below plant classifier minimum ({min}).");
+            if (max is not null && v > max.Value)
+                facts.Add($"Soil NPK-{letter} reading {v} above plant classifier maximum ({max}).");
+        }
     }
 
     private static JsonElement? Navigate(JsonElement root, params string[] path)

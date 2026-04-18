@@ -35,9 +35,17 @@ public sealed class DeviceAiContextRow
 
     public double? PlantPhMax { get; set; }
 
-    public double? PlantNpkMin { get; set; }
+    public double? PlantNpkNMin { get; set; }
 
-    public double? PlantNpkMax { get; set; }
+    public double? PlantNpkNMax { get; set; }
+
+    public double? PlantNpkPMin { get; set; }
+
+    public double? PlantNpkPMax { get; set; }
+
+    public double? PlantNpkKMin { get; set; }
+
+    public double? PlantNpkKMax { get; set; }
 
     public long? RecommendedSoilType { get; set; }
 

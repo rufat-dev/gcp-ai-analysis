@@ -1172,7 +1172,7 @@
     ]
   },
   "packageFolders": {
-    "/var/folders/_v/dmf91pt17cd6m8xgsslc765m0000gn/T/cursor-sandbox-cache/85daba0f0db277d8aeb785793e0b6605/nuget": {}
+    "/var/folders/_v/dmf91pt17cd6m8xgsslc765m0000gn/T/cursor-sandbox-cache/f65d0624a2d54692d2f75c27213b5f44/nuget": {}
   },
   "project": {
     "version": "1.0.0",
@@ -1180,7 +1180,7 @@
       "projectUniqueName": "/Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/SoilAiInsightsWorker.csproj",
       "projectName": "SoilAiInsightsWorker",
       "projectPath": "/Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/SoilAiInsightsWorker.csproj",
-      "packagesPath": "/var/folders/_v/dmf91pt17cd6m8xgsslc765m0000gn/T/cursor-sandbox-cache/85daba0f0db277d8aeb785793e0b6605/nuget",
+      "packagesPath": "/var/folders/_v/dmf91pt17cd6m8xgsslc765m0000gn/T/cursor-sandbox-cache/f65d0624a2d54692d2f75c27213b5f44/nuget",
       "outputPath": "/Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [

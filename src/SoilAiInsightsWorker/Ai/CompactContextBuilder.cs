@@ -29,6 +29,9 @@ public static class CompactContextBuilder
                 c.Moisture,
                 c.Conductivity,
                 c.PhValue,
+                c.NpkN,
+                c.NpkP,
+                c.NpkK,
                 flags = new
                 {
                     c.TemperatureLow,
@@ -55,6 +58,9 @@ public static class CompactContextBuilder
                 c.PlantConductivityMax,
                 c.PlantPhMin,
                 c.PlantPhMax,
+                npk_n = new { min = c.PlantNpkNMin, max = c.PlantNpkNMax },
+                npk_p = new { min = c.PlantNpkPMin, max = c.PlantNpkPMax },
+                npk_k = new { min = c.PlantNpkKMin, max = c.PlantNpkKMax },
             },
             soil = new
             {
