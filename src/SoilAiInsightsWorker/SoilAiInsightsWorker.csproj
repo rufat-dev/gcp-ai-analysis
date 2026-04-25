@@ -8,6 +8,7 @@
     <UserSecretsId>soil-ai-insights-worker-dev</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="FirebaseAdmin" Version="3.4.0" />
     <PackageReference Include="Google.Cloud.BigQuery.V2" Version="3.10.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
   </ItemGroup>

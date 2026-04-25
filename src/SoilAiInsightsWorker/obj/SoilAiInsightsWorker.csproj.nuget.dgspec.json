@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/SoilAiInsightsWorker.csproj": {}
+    "/Users/rufatmammadov/Projects/soil-report/gcp-ai-analysis/src/SoilAiInsightsWorker/SoilAiInsightsWorker.csproj": {}
   },
   "projects": {
-    "/Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/SoilAiInsightsWorker.csproj": {
+    "/Users/rufatmammadov/Projects/soil-report/gcp-ai-analysis/src/SoilAiInsightsWorker/SoilAiInsightsWorker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/SoilAiInsightsWorker.csproj",
+        "projectUniqueName": "/Users/rufatmammadov/Projects/soil-report/gcp-ai-analysis/src/SoilAiInsightsWorker/SoilAiInsightsWorker.csproj",
         "projectName": "SoilAiInsightsWorker",
-        "projectPath": "/Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/SoilAiInsightsWorker.csproj",
-        "packagesPath": "/var/folders/_v/dmf91pt17cd6m8xgsslc765m0000gn/T/cursor-sandbox-cache/f65d0624a2d54692d2f75c27213b5f44/nuget",
-        "outputPath": "/Users/rufatmammadov/Projects/gcp-ai-analysis/src/SoilAiInsightsWorker/obj/",
+        "projectPath": "/Users/rufatmammadov/Projects/soil-report/gcp-ai-analysis/src/SoilAiInsightsWorker/SoilAiInsightsWorker.csproj",
+        "packagesPath": "/var/folders/_v/dmf91pt17cd6m8xgsslc765m0000gn/T/cursor-sandbox-cache/dd7356fa5c4373c4db9a74496064cf16/nuget",
+        "outputPath": "/Users/rufatmammadov/Projects/soil-report/gcp-ai-analysis/src/SoilAiInsightsWorker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/rufatmammadov/.nuget/NuGet/NuGet.Config"
@@ -44,6 +44,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FirebaseAdmin": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            },
             "Google.Cloud.BigQuery.V2": {
               "target": "Package",
               "version": "[3.10.0, )"

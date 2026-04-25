@@ -12,6 +12,10 @@ public sealed class BigQueryTableResolver
         AiContextViewName = Optional("BQ_AI_CONTEXT_VIEW") ?? "v_device_ai_context";
         AiRecommendationsTable = Optional("BQ_AI_RECOMMENDATIONS_TABLE") ?? "ai_recommendations";
         AiForecastsTable = Optional("BQ_AI_FORECASTS_TABLE") ?? "ai_forecasts";
+        UsersDataset = Optional("BQ_USERS_DATASET");
+        UsersTable = Optional("BQ_USERS_TABLE");
+        AlertsDataset = Optional("BQ_ALERTS_DATASET") ?? "crm";
+        AlertsTable = Optional("BQ_ALERTS_TABLE") ?? "alerts";
     }
 
     public string ProjectId { get; }
@@ -32,6 +36,22 @@ public sealed class BigQueryTableResolver
 
     public string FullyQualifiedForecastsTable =>
         $"`{ProjectId}.{AnalyticsDataset}.{AiForecastsTable}`";
+
+    /// <summary>Optional; same env vars as SoilReportFn. Required for FCM token lookup.</summary>
+    public string? UsersDataset { get; }
+
+    /// <summary>Optional; same env vars as SoilReportFn. Required for FCM token lookup.</summary>
+    public string? UsersTable { get; }
+
+    public bool UsersTableConfigured =>
+        !string.IsNullOrWhiteSpace(UsersDataset) && !string.IsNullOrWhiteSpace(UsersTable);
+
+    public string AlertsDataset { get; }
+
+    public string AlertsTable { get; }
+
+    public string FullyQualifiedAlertsTable =>
+        $"`{ProjectId}.{AlertsDataset}.{AlertsTable}`";
 
     private static string Required(string name)
     {

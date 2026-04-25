@@ -1,3 +1,5 @@
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 using SoilAiInsightsWorker;
 using SoilAiInsightsWorker.Ai;
 using SoilAiInsightsWorker.Endpoints;
@@ -20,12 +22,22 @@ builder.Services.AddSingleton(sp =>
     var tz = Environment.GetEnvironmentVariable("AI_INSIGHTS_TIMEZONE");
     if (!string.IsNullOrWhiteSpace(tz))
         opt.InsightTimeZone = tz.Trim();
+    var fcmEnv = Environment.GetEnvironmentVariable("AI_INSIGHTS_FCM_ENABLED");
+    if (string.Equals(fcmEnv, "false", StringComparison.OrdinalIgnoreCase))
+        opt.FcmNotificationsEnabled = false;
+    if (string.Equals(Environment.GetEnvironmentVariable("AI_INSIGHTS_ALERT_PERSIST"), "false", StringComparison.OrdinalIgnoreCase))
+        opt.PersistAlertsAfterFcmPush = false;
     return opt;
 });
+
+TryInitFirebaseForFcm();
 
 builder.Services.AddSingleton<BigQueryTableResolver>();
 builder.Services.AddSingleton<BigQueryCommandRunner>();
 builder.Services.AddSingleton<SqlTemplateProvider>();
+builder.Services.AddSingleton<PushAlertInserter>();
+builder.Services.AddSingleton<FcmPushService>();
+builder.Services.AddSingleton<IFcmPushService>(sp => sp.GetRequiredService<FcmPushService>());
 builder.Services.AddSingleton<AiInsightsJobOrchestrator>();
 
 builder.Services.AddHttpClient("openai", (sp, c) =>
@@ -51,3 +63,29 @@ var app = builder.Build();
 
 app.MapAiInsightsEndpoints();
 app.Run();
+
+static void TryInitFirebaseForFcm()
+{
+    if (string.Equals(Environment.GetEnvironmentVariable("AI_INSIGHTS_FCM_ENABLED"), "false", StringComparison.OrdinalIgnoreCase))
+        return;
+
+    var projectId = Environment.GetEnvironmentVariable("FIREBASE_PROJECT_ID")?.Trim();
+    if (string.IsNullOrEmpty(projectId))
+        return;
+
+    try
+    {
+        if (FirebaseApp.DefaultInstance is null)
+        {
+            FirebaseApp.Create(new AppOptions
+            {
+                Credential = GoogleCredential.GetApplicationDefault(),
+                ProjectId = projectId,
+            });
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.Error.WriteLine($"SoilAiInsightsWorker: Firebase init skipped; FCM will no-op ({ex.Message})");
+    }
+}

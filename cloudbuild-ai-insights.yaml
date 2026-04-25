@@ -4,6 +4,13 @@ substitutions:
   _AR_REPOSITORY: cloud-run
   _IMAGE_NAME: soil-ai-insights-worker
   _SERVICE_NAME: soil-ai-insights-worker
+  _RUNTIME_SERVICE_ACCOUNT: soil-ai-insights-runtime
+  _BQ_USERS_DATASET: crm
+  _BQ_USERS_TABLE: users
+  _BQ_ALERTS_DATASET: crm
+  _BQ_ALERTS_TABLE: alerts
+  _FIREBASE_SA_SECRET: soil-report-a2ded-firebase-adminsdk-fbsvc
+  _FIREBASE_SA_SECRET_VERSION: latest
 
 steps:
   - name: gcr.io/cloud-builders/docker
@@ -30,6 +37,9 @@ steps:
       - --region=${_REGION}
       - --platform=managed
       - --no-allow-unauthenticated
+      - --service-account=${_RUNTIME_SERVICE_ACCOUNT}@$PROJECT_ID.iam.gserviceaccount.com
+      - --set-env-vars=FIREBASE_PROJECT_ID=$PROJECT_ID,AI_INSIGHTS_FCM_ENABLED=true,AI_INSIGHTS_ALERT_PERSIST=true,BQ_USERS_DATASET=${_BQ_USERS_DATASET},BQ_USERS_TABLE=${_BQ_USERS_TABLE},BQ_ALERTS_DATASET=${_BQ_ALERTS_DATASET},BQ_ALERTS_TABLE=${_BQ_ALERTS_TABLE},GOOGLE_APPLICATION_CREDENTIALS=/var/secrets/firebase/firebase-admin.json
+      - --update-secrets=/var/secrets/firebase/firebase-admin.json=${_FIREBASE_SA_SECRET}:${_FIREBASE_SA_SECRET_VERSION}
 
 images:
   - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPOSITORY}/${_IMAGE_NAME}:$SHORT_SHA

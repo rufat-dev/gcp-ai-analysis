@@ -8,11 +8,25 @@
     ".NETCoreApp,Version=v8.0": {
       "SoilAiInsightsWorker/1.0.0": {
         "dependencies": {
+          "FirebaseAdmin": "3.4.0",
           "Google.Cloud.BigQuery.V2": "3.10.0",
           "Microsoft.Extensions.Http": "8.0.1"
         },
         "runtime": {
           "SoilAiInsightsWorker.dll": {}
+        }
+      },
+      "FirebaseAdmin/3.4.0": {
+        "dependencies": {
+          "Google.Api.Gax.Rest": "4.8.0",
+          "Google.Apis.Auth": "1.68.0",
+          "System.Collections.Immutable": "8.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/FirebaseAdmin.dll": {
+            "assemblyVersion": "3.4.0.0",
+            "fileVersion": "3.4.0.0"
+          }
         }
       },
       "Google.Api.Gax/4.8.0": {
@@ -30,7 +44,7 @@
       "Google.Api.Gax.Rest/4.8.0": {
         "dependencies": {
           "Google.Api.Gax": "4.8.0",
-          "Google.Apis.Auth": "1.67.0",
+          "Google.Apis.Auth": "1.68.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
         },
         "runtime": {
@@ -40,34 +54,34 @@
           }
         }
       },
-      "Google.Apis/1.67.0": {
+      "Google.Apis/1.68.0": {
         "dependencies": {
-          "Google.Apis.Core": "1.67.0"
+          "Google.Apis.Core": "1.68.0"
         },
         "runtime": {
           "lib/net6.0/Google.Apis.dll": {
-            "assemblyVersion": "1.67.0.0",
-            "fileVersion": "1.67.0.0"
+            "assemblyVersion": "1.68.0.0",
+            "fileVersion": "1.68.0.0"
           }
         }
       },
-      "Google.Apis.Auth/1.67.0": {
+      "Google.Apis.Auth/1.68.0": {
         "dependencies": {
-          "Google.Apis": "1.67.0",
-          "Google.Apis.Core": "1.67.0",
+          "Google.Apis": "1.68.0",
+          "Google.Apis.Core": "1.68.0",
           "System.Management": "7.0.2"
         },
         "runtime": {
           "lib/net6.0/Google.Apis.Auth.dll": {
-            "assemblyVersion": "1.67.0.0",
-            "fileVersion": "1.67.0.0"
+            "assemblyVersion": "1.68.0.0",
+            "fileVersion": "1.68.0.0"
           }
         }
       },
       "Google.Apis.Bigquery.v2/1.67.0.3331": {
         "dependencies": {
-          "Google.Apis": "1.67.0",
-          "Google.Apis.Auth": "1.67.0"
+          "Google.Apis": "1.68.0",
+          "Google.Apis.Auth": "1.68.0"
         },
         "runtime": {
           "lib/net6.0/Google.Apis.Bigquery.v2.dll": {
@@ -76,14 +90,14 @@
           }
         }
       },
-      "Google.Apis.Core/1.67.0": {
+      "Google.Apis.Core/1.68.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "lib/net6.0/Google.Apis.Core.dll": {
-            "assemblyVersion": "1.67.0.0",
-            "fileVersion": "1.67.0.0"
+            "assemblyVersion": "1.68.0.0",
+            "fileVersion": "1.68.0.0"
           }
         }
       },
@@ -245,6 +259,7 @@
           }
         }
       },
+      "System.Collections.Immutable/8.0.0": {},
       "System.Management/7.0.2": {
         "dependencies": {
           "System.CodeDom": "7.0.0"
@@ -272,6 +287,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "FirebaseAdmin/3.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sQyVEOYRe4HSSmRCJQhKr33DxZk10lpDE2otdTgNkqPn4BRul2JG7TCQC7N7X0wO9ShnPLbVS4xuSUHlaPBbug==",
+      "path": "firebaseadmin/3.4.0",
+      "hashPath": "firebaseadmin.3.4.0.nupkg.sha512"
+    },
     "Google.Api.Gax/4.8.0": {
       "type": "package",
       "serviceable": true,
@@ -286,19 +308,19 @@
       "path": "google.api.gax.rest/4.8.0",
       "hashPath": "google.api.gax.rest.4.8.0.nupkg.sha512"
     },
-    "Google.Apis/1.67.0": {
+    "Google.Apis/1.68.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-XM8/fViJaB1pN61OdXy5RMZoQEqd3hKlWvA/K431gFSb5XtQ48BynfgrbBkUtFcPbSRa4BdjBHzSbkBh/skyMg==",
-      "path": "google.apis/1.67.0",
-      "hashPath": "google.apis.1.67.0.nupkg.sha512"
+      "sha512": "sha512-s2MymhdpH+ybZNBeZ2J5uFgFHApBp+QXf9FjZSdM1lk/vx5VqIknJwnaWiuAzXxPrLEkesX0Q+UsiWn39yZ9zw==",
+      "path": "google.apis/1.68.0",
+      "hashPath": "google.apis.1.68.0.nupkg.sha512"
     },
-    "Google.Apis.Auth/1.67.0": {
+    "Google.Apis.Auth/1.68.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Bs9BlbZ12Y4NXzMONjpzQhZr9VbwLUTGMHkcQRF36aYnk2fYrmj5HNVNh7PPHDDq1fcEQpCtPic2nSlpYQLKXw==",
-      "path": "google.apis.auth/1.67.0",
-      "hashPath": "google.apis.auth.1.67.0.nupkg.sha512"
+      "sha512": "sha512-hFx8Qz5bZ4w0hpnn4tSmZaaFpjAMsgVElZ+ZgVLUZ2r9i+AKcoVgwiNfv1pruNS5cCvpXqhKECbruBCfRezPHA==",
+      "path": "google.apis.auth/1.68.0",
+      "hashPath": "google.apis.auth.1.68.0.nupkg.sha512"
     },
     "Google.Apis.Bigquery.v2/1.67.0.3331": {
       "type": "package",
@@ -307,12 +329,12 @@
       "path": "google.apis.bigquery.v2/1.67.0.3331",
       "hashPath": "google.apis.bigquery.v2.1.67.0.3331.nupkg.sha512"
     },
-    "Google.Apis.Core/1.67.0": {
+    "Google.Apis.Core/1.68.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IPq0I3B01NYZraPoMl8muELFLg4Vr2sbfyZp4PR2Xe3MAhHkZCiKyV28Yh1L14zIKUb0X0snol1sR5/mx4S6Iw==",
-      "path": "google.apis.core/1.67.0",
-      "hashPath": "google.apis.core.1.67.0.nupkg.sha512"
+      "sha512": "sha512-pAqwa6pfu53UXCR2b7A/PAPXeuVg6L1OFw38WckN27NU2+mf+KTjoEg2YGv/f0UyKxzz7DxF1urOTKg/6dTP9g==",
+      "path": "google.apis.core/1.68.0",
+      "hashPath": "google.apis.core.1.68.0.nupkg.sha512"
     },
     "Google.Cloud.BigQuery.V2/3.10.0": {
       "type": "package",
@@ -432,6 +454,13 @@
       "sha512": "sha512-GLltyqEsE5/3IE+zYRP5sNa1l44qKl9v+bfdMcwg+M9qnQf47wK3H0SUR/T+3N4JEQXF3vV4CSuuo0rsg+nq2A==",
       "path": "system.codedom/7.0.0",
       "hashPath": "system.codedom.7.0.0.nupkg.sha512"
+    },
+    "System.Collections.Immutable/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AurL6Y5BA1WotzlEvVaIDpqzpIPvYnnldxru8oXJU2yFxFUy3+pNXjXd1ymO+RA0rq0+590Q8gaz2l3Sr7fmqg==",
+      "path": "system.collections.immutable/8.0.0",
+      "hashPath": "system.collections.immutable.8.0.0.nupkg.sha512"
     },
     "System.Management/7.0.2": {
       "type": "package",

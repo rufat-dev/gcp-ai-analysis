@@ -32,6 +32,16 @@ public sealed class AiInsightsWorkerOptions
     public string OpenAiChatModel { get; set; } = "gpt-4o-mini";
 
     public int OpenAiTimeoutSeconds { get; set; } = 120;
+
+    /// <summary>
+    /// When true (default), sends FCM for high/critical + urgent recommendations if <c>fcm_token</c> exists.
+    /// Disable with config or env <c>AI_INSIGHTS_FCM_ENABLED=false</c>.
+    /// </summary>
+    public bool FcmNotificationsEnabled { get; set; } = true;
+
+    /// <summary>When true (default), inserts a row into <c>crm.alerts</c> after a successful FCM send.</summary>
+    public bool PersistAlertsAfterFcmPush { get; set; } = true;
+
 }
 
 public enum AiInsightsRunMode

@@ -13,6 +13,7 @@ public sealed class AiInsightsJobOrchestrator
     private readonly SqlTemplateProvider _sql;
     private readonly AiInsightsWorkerOptions _options;
     private readonly IAiInsightGenerator _ai;
+    private readonly IFcmPushService _fcm;
     private readonly ILogger<AiInsightsJobOrchestrator> _logger;
 
     public AiInsightsJobOrchestrator(
@@ -21,6 +22,7 @@ public sealed class AiInsightsJobOrchestrator
         SqlTemplateProvider sql,
         AiInsightsWorkerOptions options,
         IAiInsightGenerator ai,
+        IFcmPushService fcm,
         ILogger<AiInsightsJobOrchestrator> logger)
     {
         _bq = bq;
@@ -28,6 +30,7 @@ public sealed class AiInsightsJobOrchestrator
         _sql = sql;
         _options = options;
         _ai = ai;
+        _fcm = fcm;
         _logger = logger;
     }
 
@@ -130,7 +133,22 @@ public sealed class AiInsightsJobOrchestrator
                     {
                         try
                         {
-                            await MergeRecommendationAsync(mergeRecSql, d, insightStart, recPayload, cancellationToken)
+                            var recommendationId = DeterministicIds.RecommendationId(d.DeviceId, insightStart);
+                            await MergeRecommendationAsync(
+                                    mergeRecSql,
+                                    d,
+                                    insightStart,
+                                    recommendationId,
+                                    recPayload,
+                                    cancellationToken)
+                                .ConfigureAwait(false);
+                            await _fcm
+                                .TrySendUrgentRecommendationAsync(
+                                    d.UserId,
+                                    recommendationId,
+                                    d.DeviceId,
+                                    recPayload,
+                                    cancellationToken)
                                 .ConfigureAwait(false);
                             recCount.Increment();
                         }
@@ -226,10 +244,11 @@ public sealed class AiInsightsJobOrchestrator
         string mergeSql,
         DeviceAiContextRow d,
         DateTime insightStartUtc,
+        string recommendationId,
         RecommendationAiPayload p,
         CancellationToken cancellationToken)
     {
-        var id = DeterministicIds.RecommendationId(d.DeviceId, insightStartUtc);
+        var id = recommendationId;
         var now = DateTime.UtcNow;
         var supportingFactsJson = System.Text.Json.JsonSerializer.Serialize(p.SupportingFacts);
         var triggeredBy = CompactContextBuilder.BuildTriggeredByJson(d);
