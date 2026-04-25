@@ -105,9 +105,10 @@ static async Task TryInitFirebaseForFcmAsync()
             StringComparison.OrdinalIgnoreCase);
         if (tokenDebugEnabled)
         {
-            var token = await scopedCredential
-                .GetAccessTokenForRequestAsync()
-                .ConfigureAwait(false);
+            var tokenAccess = scopedCredential.UnderlyingCredential as ITokenAccess;
+            var token = tokenAccess is null
+                ? string.Empty
+                : await tokenAccess.GetAccessTokenForRequestAsync().ConfigureAwait(false);
             var tokenPrefix = string.IsNullOrWhiteSpace(token)
                 ? "(empty)"
                 : token[..Math.Min(12, token.Length)];
