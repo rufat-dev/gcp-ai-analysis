@@ -4,12 +4,12 @@ substitutions:
   _AR_REPOSITORY: cloud-run-source-deploy
   _IMAGE_NAME: rufat-dev-gcp-ai-analysis/gcp-ai-analysis-git
   _SERVICE_NAME: gcp-ai-analysis-git
-  _RUNTIME_SERVICE_ACCOUNT: 678290165816-compute
+  _RUNTIME_SERVICE_ACCOUNT: firebase-adminsdk-fbsvc
   _BQ_USERS_DATASET: crm
   _BQ_USERS_TABLE: users
   _BQ_ALERTS_DATASET: crm
   _BQ_ALERTS_TABLE: alerts
-  _FIREBASE_PROJECT_ID: soil-report-a2ded
+  _FIREBASE_PROJECT_ID: soil-report-486813
 
 steps:
   - name: gcr.io/cloud-builders/docker
