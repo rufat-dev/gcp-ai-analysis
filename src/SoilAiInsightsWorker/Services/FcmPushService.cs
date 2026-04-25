@@ -34,6 +34,7 @@ public sealed class FcmPushService : IFcmPushService
         RecommendationAiPayload payload,
         CancellationToken cancellationToken)
     {
+        var firebaseProjectId = Environment.GetEnvironmentVariable("FIREBASE_PROJECT_ID")?.Trim();
         if (!_options.FcmNotificationsEnabled)
             return;
 
@@ -61,6 +62,14 @@ public sealed class FcmPushService : IFcmPushService
             _logger.LogDebug("FCM skipped: no fcm_token for user_id {UserId}", userId);
             return;
         }
+
+        _logger.LogInformation(
+            "FCM send attempt. firebaseProjectId={FirebaseProjectId} userId={UserId} recommendationId={RecommendationId} deviceId={DeviceId} tokenPresent={TokenPresent}",
+            firebaseProjectId ?? "(unset)",
+            userId,
+            recommendationId,
+            deviceId,
+            !string.IsNullOrWhiteSpace(token));
 
         var fcmTitle = Truncate(payload.Title, 120);
         var dbTitle = Truncate(payload.Title, 500);
@@ -101,12 +110,18 @@ public sealed class FcmPushService : IFcmPushService
         }
         catch (FirebaseMessagingException ex)
         {
+            var looksLikeAuthOrProjectFailure =
+                ex.Message.Contains("authentication credential", StringComparison.OrdinalIgnoreCase)
+                || ex.Message.Contains("permission", StringComparison.OrdinalIgnoreCase)
+                || ex.Message.Contains("cloudmessaging.messages.create", StringComparison.OrdinalIgnoreCase)
+                || ex.Message.Contains("project", StringComparison.OrdinalIgnoreCase);
             _logger.LogWarning(
                 ex,
-                "FCM send failed for user {UserId} recommendation {RecommendationId}: {MessagingError}",
+                "FCM send failed for user {UserId} recommendation {RecommendationId}: {MessagingError}. authProjectPermissionFailure={AuthProjectPermissionFailure}",
                 userId,
                 recommendationId,
-                ex.MessagingErrorCode);
+                ex.MessagingErrorCode,
+                looksLikeAuthOrProjectFailure);
         }
         catch (Exception ex)
         {
